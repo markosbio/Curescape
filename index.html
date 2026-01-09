@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Curescape</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    /* RESET & BASE */
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8fbfa;
+      color: #1f2d2b;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: #1b7f5c;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      z-index: 1000;
+    }
+
+    nav .brand {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1b7f5c;
+    }
+
+    nav .links a {
+      margin-left: 20px;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    /* HERO */
+    header {
+      background: linear-gradient(135deg, #e7f5f0, #d1efe4);
+      padding: 120px 20px 100px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      color: #145c44;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      max-width: 720px;
+      margin: auto;
+      opacity: 0.9;
+    }
+
+    /* SECTIONS */
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 80px 20px;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #145c44;
+    }
+
+    section h2::after {
+      content: "";
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: #1b7f5c;
+      margin-top: 10px;
+      border-radius: 2px;
+    }
+
+    /* ABOUT */
+    .about p {
+      max-width: 800px;
+      line-height: 1.6;
+      font-size: 1.05rem;
+    }
+
+    /* PRODUCTS */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .product {
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    }
+
+    .product img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .product-content {
+      padding: 20px;
+    }
+
+    .product-content h3 {
+      margin-top: 0;
+      color: #1b7f5c;
+    }
+
+    .product-content p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* FOUNDER */
+    .founder {
+      background: #eef7f4;
+      border-radius: 18px;
+      padding: 40px;
+    }
+
+    .founder p {
+      max-width: 800px;
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0f3d2e;
+      color: #ffffff;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #b7f2dd;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.4rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="brand">Curescape</div>
+  <div class="links">
+    <a href="#about">About</a>
+    <a href="#products">Prototypes</a>
+    <a href="#founder">Founder</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header>
+  <h1>Curescape</h1>
+  <p>
+    Developing accessible, evidence-informed health products designed for
+    real-world care in under-resourced settings.
+  </p>
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <h2>About Curescape</h2>
+  <p>
+    Curescape is a health innovation venture focused on creating affordable,
+    user-friendly therapeutic products that address unmet clinical needs in
+    community and home-based care. Our work prioritizes safety, accessibility,
+    and practical impact — especially in low-resource environments.
+  </p>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <h2>Our Prototypes</h2>
+
+  <div class="products">
+
+    <div class="product">
+      <img src="sickle-cell-syrup.jpg" alt="Sickle Cell Relief Syrup">
+      <div class="product-content">
+        <h3>Sickle Cell Relief Syrup</h3>
+        <p>
+          A child-friendly, honey-flavoured supportive care syrup designed to
+          assist pain management, organ health, and overall wellbeing for
+          individuals living with sickle cell disease.
+        </p>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="cure-wound-gel.jpg" alt="Cure Wound Gel">
+      <div class="product-content">
+        <h3>Cure Wound Gel</h3>
+        <p>
+          A plant-based topical gel formulated to support healing in diabetic
+          and chronic wounds by maintaining a protective wound environment and
+          promoting tissue repair.
+        </p>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="cure-wound-spray.jpg" alt="Cure Wound Spray">
+      <div class="product-content">
+        <h3>Cure Wound Spray</h3>
+        <p>
+          A rapid-action wound spray providing antimicrobial protection, pain
+          relief, and support for tissue recovery through a sterile,
+          easy-to-apply format.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section id="founder">
+  <h2>Founder</h2>
+  <div class="founder">
+    <p><strong>Mark Rutekamira Sserugo</strong></p>
+    <p>
+      Pharmaceutical sciences student and health innovator focused on
+      developing accessible, evidence-informed solutions for real-world
+      healthcare challenges across Africa.
+    </p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact</h2>
+  <p>
+    📧 <a href="mailto:inquiries@curescape.com">inquiries@curescape.com</a><br>
+    🔗 <a href="https://www.linkedin.com/in/markrutekamirasserugo" target="_blank">
+      LinkedIn
+    </a>
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 Curescape · Built with GitHub Pages
+</footer>
+
+</body>
+</html>
