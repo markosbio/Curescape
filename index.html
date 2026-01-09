@@ -7,16 +7,8 @@
   
   <style>
     /* RESET & BASE */
-    * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: #0d1f1a;
-      color: #a3f0c3;
-    }
+    * { box-sizing: border-box; scroll-behavior: smooth; }
+    body { margin: 0; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; background: #0d1f1a; color: #a3f0c3; }
     a { color: #a3f0c3; text-decoration: none; }
     a:hover { text-decoration: underline; }
 
@@ -38,7 +30,7 @@
       align-items: center;
       gap: 12px;
     }
-    nav .brand img { width: 48px; height: 48px; border-radius: 8px; }
+    nav .brand img { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; }
     nav .links a { margin-left: 24px; font-weight: 500; }
 
     /* HERO */
@@ -52,14 +44,8 @@
 
     /* SECTIONS */
     section { max-width: 1200px; margin: auto; padding: 80px 20px; }
-    section h2 {
-      font-size: 2.2rem; margin-bottom: 30px; color: #a3f0c3;
-      position: relative;
-    }
-    section h2::after {
-      content: ""; position: absolute; left: 0; bottom: -10px;
-      width: 80px; height: 4px; background: #15b67e; border-radius: 2px;
-    }
+    section h2 { font-size: 2.2rem; margin-bottom: 30px; color: #a3f0c3; position: relative; }
+    section h2::after { content: ""; position: absolute; left: 0; bottom: -10px; width: 80px; height: 4px; background: #15b67e; border-radius: 2px; }
 
     /* ABOUT */
     .about p { max-width: 800px; line-height: 1.7; font-size: 1.05rem; }
@@ -74,20 +60,40 @@
 
     /* FOUNDER */
     .founder { background: #145c44; border-radius: 16px; padding: 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 30px; }
-    .founder img { width: 200px; border-radius: 12px; background: #ffffff; padding: 8px; }
-    .founder p { max-width: 700px; line-height: 1.7; font-size: 1rem; text-align: left; }
+    .founder img { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 4px solid #a3f0c3; }
+    .founder div { max-width: 700px; }
+    .founder p { line-height: 1.7; font-size: 1rem; text-align: left; }
 
     /* CONTACT */
     #contact p { font-size: 1rem; line-height: 1.6; }
+
+    /* BACK TO TOP BUTTON */
+    #topBtn {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      background: #15b67e;
+      color: #ffffff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      font-size: 24px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      z-index: 999;
+      transition: background 0.3s;
+    }
+    #topBtn:hover { background: #12a36b; }
 
     /* FOOTER */
     footer { text-align: center; padding: 40px 20px; background: #0f3d2e; font-size: 0.9rem; color: #b7f2dd; }
 
     /* RESPONSIVE */
-    @media (min-width: 768px) { 
-      .products { grid-template-columns: repeat(2, 1fr); }
-      .founder { flex-wrap: nowrap; }
-    }
+    @media (min-width: 768px) { .products { grid-template-columns: repeat(2, 1fr); } .founder { flex-wrap: nowrap; } }
     @media (min-width: 1200px) { .products { grid-template-columns: repeat(3, 1fr); } }
   </style>
 </head>
@@ -104,6 +110,7 @@
     <a href="#products">Prototypes</a>
     <a href="#founder">Founder</a>
     <a href="#contact">Contact</a>
+    <a href="https://www.linkedin.com/in/markrutekamirasserugo" target="_blank">LinkedIn</a>
   </div>
 </nav>
 
@@ -165,10 +172,25 @@
   </p>
 </section>
 
+<!-- BACK TO TOP BUTTON -->
+<button id="topBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+
 <!-- FOOTER -->
 <footer>
   © 2026 Curescape · Built with GitHub Pages
 </footer>
+
+<script>
+  // Show button when scrolling down
+  const topBtn = document.getElementById("topBtn");
+  window.onscroll = function() {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      topBtn.style.display = "flex";
+    } else {
+      topBtn.style.display = "none";
+    }
+  };
+</script>
 
 </body>
 </html>
