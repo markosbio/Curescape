@@ -4,78 +4,183 @@
   <meta charset="UTF-8" />
   <title>Curescape</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <style>
+    /* BASE STYLES */
     body {
       margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: #f8fbfa;
-      color: #1f2d2b;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e6f7f1;
+      color: #114d42;
       scroll-behavior: smooth;
     }
-    a { color: #1b7f5c; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a { color: #0d7c68; text-decoration: none; }
+    a:hover { color: #ff7f61; text-decoration: underline; }
 
+    /* NAVIGATION */
     nav {
-      position: sticky; top: 0; background: #fff;
-      display: flex; justify-content: space-between; align-items: center;
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: 16px 32px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       z-index: 1000;
     }
-    nav .brand { font-size: 1.4rem; font-weight: 700; color: #1b7f5c; }
-    nav .links a { margin-left: 20px; font-weight: 500; font-size: 0.95rem; }
-
-    header {
-      background: linear-gradient(135deg, #e7f5f0, #d1efe4);
-      padding: 120px 20px 100px;
-      text-align: center;
+    nav .brand {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0d7c68;
+      display: flex;
+      align-items: center;
     }
-    header h1 { font-size: 3rem; margin-bottom: 15px; color: #145c44; }
-    header p { font-size: 1.2rem; max-width: 720px; margin: auto; opacity: 0.9; }
+    nav .brand img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      margin-right: 12px;
+    }
+    nav .links a {
+      margin-left: 20px;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
 
-    section { max-width: 1100px; margin: auto; padding: 80px 20px; }
+    /* HERO HEADER */
+    header {
+      text-align: center;
+      padding: 140px 20px 100px;
+      background: linear-gradient(135deg, #bff0e0, #99e8d3);
+      position: relative;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin: 20px 0 15px 0;
+      color: #114d42;
+      animation: fadeIn 1s ease-out;
+    }
+    header p {
+      font-size: 1.2rem;
+      max-width: 720px;
+      margin: auto;
+      opacity: 0.9;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    /* SECTIONS */
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 80px 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards;
+    }
     section h2 {
-      font-size: 2rem; margin-bottom: 20px; color: #145c44;
+      font-size: 2rem;
+      margin-bottom: 25px;
+      color: #0d7c68;
+      position: relative;
     }
     section h2::after {
-      content: ""; display: block; width: 70px; height: 4px; background: #1b7f5c; margin-top: 10px; border-radius: 2px;
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: #ff7f61;
+      margin-top: 10px;
+      border-radius: 2px;
     }
+    section p { font-size: 1.05rem; line-height: 1.6; }
 
-    .about p { max-width: 800px; line-height: 1.6; font-size: 1.05rem; }
-
+    /* PRODUCTS */
     .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
     }
-    .product {
-      background: #fff; border-radius: 14px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    .card {
+      background: #ffffff;
+      flex: 1 1 280px;
+      max-width: 300px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
       overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.4s, box-shadow 0.4s, background 0.4s;
+      animation: fadeIn 1s ease forwards;
     }
-    .product:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
-    .product img { width: 100%; height: 220px; object-fit: cover; }
-    .product-content { padding: 20px; }
-    .product-content h3 { margin-top: 0; color: #1b7f5c; }
-    .product-content p { font-size: 0.95rem; line-height: 1.5; }
+    .card:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+      background: linear-gradient(135deg, #ffece4, #ffd2c8);
+    }
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .card-content { padding: 20px; }
+    .card-content h3 { color: #0d7c68; margin-top: 0; }
+    .card-content p { font-size: 0.95rem; line-height: 1.5; }
 
-    .founder { background: #eef7f4; border-radius: 18px; padding: 40px; }
-    .founder p { max-width: 800px; line-height: 1.6; }
+    /* FOUNDER */
+    .founder {
+      background: #d6f0e2;
+      border-radius: 18px;
+      padding: 40px;
+    }
 
-    footer { background: #0f3d2e; color: #fff; text-align: center; padding: 40px 20px; font-size: 0.9rem; }
-    footer a { color: #b7f2dd; }
+    /* FOOTER */
+    footer {
+      background: #0d7c68;
+      color: #ffffff;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9rem;
+      opacity: 0.95;
+    }
+    footer a { color: #ff7f61; }
 
-    @media (max-width: 768px) { header h1 { font-size: 2.4rem; } }
+    /* BACK TO TOP BUTTON */
+    #topBtn {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 100;
+      font-size: 18px;
+      border: none;
+      outline: none;
+      background-color: #0d7c68;
+      color: white;
+      cursor: pointer;
+      padding: 12px 16px;
+      border-radius: 50%;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    #topBtn:hover { background-color: #074632; transform: scale(1.1); }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp { to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .products { flex-direction: column; align-items: center; }
+      nav .brand img { margin-right: 8px; width: 45px; height: 45px; }
+    }
   </style>
 </head>
 
 <body>
   <!-- NAV -->
   <nav>
-    <div class="brand">Curescape</div>
+    <div class="brand">
+      <img src="Curescape-logo.jpg" alt="Curescape Logo">
+      Curescape
+    </div>
     <div class="links">
       <a href="#about">About</a>
       <a href="#products">Prototypes</a>
@@ -91,36 +196,36 @@
   </header>
 
   <!-- ABOUT -->
-  <section id="about" class="about">
+  <section id="about">
     <h2>About Curescape</h2>
-    <p>Curescape is a health innovation venture focused on creating affordable, user-friendly therapeutic products that address unmet clinical needs in community and home-based care. Our work prioritizes safety, accessibility, and practical impact — especially in low-resource environments.</p>
+    <p>Curescape is a health innovation venture creating affordable, user-friendly therapeutic products that address unmet clinical needs in community and home-based care. Our work prioritizes safety, accessibility, and practical impact — especially in low-resource environments.</p>
   </section>
 
   <!-- PRODUCTS -->
   <section id="products">
     <h2>Our Prototypes</h2>
     <div class="products">
-      <div class="product">
+      <div class="card">
         <img src="sickle-cell-releaf-syp.jpg" alt="Sickle Cell Relief Syrup">
-        <div class="product-content">
+        <div class="card-content">
           <h3>Sickle Cell Relief Syrup</h3>
-          <p>A child-friendly, honey-flavoured supportive care syrup designed to assist pain management, organ health, and overall wellbeing for individuals living with sickle cell disease.</p>
+          <p>Child-friendly, honey-flavoured supportive care syrup for pain management, organ health, and overall wellbeing for individuals with sickle cell disease.</p>
         </div>
       </div>
 
-      <div class="product">
+      <div class="card">
         <img src="cure-wound-gel.jpg" alt="Cure Wound Gel">
-        <div class="product-content">
+        <div class="card-content">
           <h3>Cure Wound Gel</h3>
-          <p>A plant-based topical gel formulated to support healing in diabetic and chronic wounds by maintaining a protective wound environment and promoting tissue repair.</p>
+          <p>Plant-based topical gel supporting healing in diabetic and chronic wounds by promoting tissue repair and maintaining a protective environment.</p>
         </div>
       </div>
 
-      <div class="product">
+      <div class="card">
         <img src="cure-wound-spray.jpg" alt="Cure Wound Spray">
-        <div class="product-content">
+        <div class="card-content">
           <h3>Cure Wound Spray</h3>
-          <p>A rapid-action wound spray providing antimicrobial protection, pain relief, and support for tissue recovery through a sterile, easy-to-apply format.</p>
+          <p>Rapid-action wound spray providing antimicrobial protection, pain relief, and support for tissue recovery in an easy-to-apply sterile format.</p>
         </div>
       </div>
     </div>
@@ -138,13 +243,25 @@
   <!-- CONTACT -->
   <section id="contact">
     <h2>Contact</h2>
-    <p>📧 <a href="mailto:inquiries@curescape.com">inquiries@curescape.com</a><br>
-       🔗 <a href="https://www.linkedin.com/in/markrutekamirasserugo" target="_blank">LinkedIn</a></p>
+    <p>📧 <a href="mailto:inquiries.curescape@gmail.com">inquiries.curescape@gmail.com</a><br>
+       🔗 <a href="https://www.linkedin.com/in/markrutekamirasserugo" target="_blank">Mark Rutekamira Sserugo on LinkedIn</a></p>
   </section>
 
   <!-- FOOTER -->
   <footer>
     © 2026 Curescape · Built with GitHub Pages
   </footer>
+
+  <!-- BACK TO TOP BUTTON -->
+  <button onclick="topFunction()" id="topBtn" title="Go to top">↑</button>
+  <script>
+    const topBtn = document.getElementById("topBtn");
+    window.onscroll = function() {
+      if(document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        topBtn.style.display = "block";
+      } else { topBtn.style.display = "none"; }
+    };
+    function topFunction(){ window.scrollTo({top:0,behavior:'smooth'}); }
+  </script>
 </body>
 </html>
