@@ -1,216 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Curescape</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: #0b1c15;
-      color: #a6f0d8;
-      scroll-behavior: smooth;
-    }
-    a {
-      color: #6be0b1;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+    /* RESET & BASE */
+    * { box-sizing: border-box; scroll-behavior: smooth; }
+    body { margin: 0; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; background: #0d1f1a; color: #a3f0c3; }
+    a { color: #a3f0c3; text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
     /* NAVBAR */
     nav {
+      position: sticky;
+      top: 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 16px 32px;
-      background: #0c2b1e;
+      background: #123028;
+      z-index: 1000;
     }
-    .nav-left {
+    nav .brand {
+      font-size: 1.6rem;
+      font-weight: bold;
       display: flex;
       align-items: center;
+      gap: 12px;
     }
-    .nav-left img {
-      height: 50px;
-      margin-right: 15px;
-    }
-    .nav-left h1 {
-      font-size: 1.8rem;
-      margin: 0;
-    }
-    .nav-right a {
-      margin-left: 20px;
-      font-weight: 500;
-    }
+    nav .brand img { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; }
+    nav .links a { margin-left: 24px; font-weight: 500; }
 
     /* HERO */
     header {
       text-align: center;
-      padding: 100px 20px 80px;
-      background: linear-gradient(135deg, #0b1c15, #0d291e);
+      padding: 100px 20px 60px;
+      background: linear-gradient(135deg, #0f3d2e, #145c44);
     }
-    header h2 {
-      font-size: 3rem;
-      margin-bottom: 15px;
-      color: #55f3c1;
-    }
-    header p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: auto;
-      opacity: 0.9;
-    }
+    header h1 { font-size: 3rem; margin-bottom: 20px; }
+    header p { font-size: 1.2rem; max-width: 700px; margin: auto; opacity: 0.9; }
 
     /* SECTIONS */
-    section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 60px 20px;
-    }
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #55f3c1;
-      border-bottom: 3px solid #e32121;
-      display: inline-block;
-    }
+    section { max-width: 1200px; margin: auto; padding: 80px 20px; }
+    section h2 { font-size: 2.2rem; margin-bottom: 30px; color: #a3f0c3; position: relative; }
+    section h2::after { content: ""; position: absolute; left: 0; bottom: -10px; width: 80px; height: 4px; background: #15b67e; border-radius: 2px; }
+
+    /* ABOUT */
+    .about p { max-width: 800px; line-height: 1.7; font-size: 1.05rem; }
 
     /* PRODUCTS */
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      justify-content: center;
-      margin-top: 40px;
-    }
-    .product {
-      background: #132922;
-      border-radius: 20px;
-      width: 300px;
-      text-align: center;
-      padding: 20px;
-      transition: transform 0.3s;
-    }
-    .product:hover {
-      transform: translateY(-8px);
-    }
-    .product img {
-      width: 100%;
-      height: 300px;
-      object-fit: contain;
-      border-radius: 15px;
-      margin-bottom: 15px;
-      background: #fff;
-      padding: 10px;
-    }
-    .product h3 {
-      margin: 0;
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-      color: #55f3c1;
-    }
-    .product p {
-      font-size: 0.95rem;
-      line-height: 1.4;
-    }
+    .products { display: grid; grid-template-columns: 1fr; gap: 50px; }
+    .product { background: #123028; border-radius: 16px; padding: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.6); display: flex; flex-direction: column; align-items: center; transition: transform 0.3s; }
+    .product:hover { transform: translateY(-8px); }
+    .product img { width: 90%; max-width: 500px; border-radius: 12px; margin-bottom: 20px; }
+    .product h3 { margin: 0 0 12px; color: #a3f0c3; font-size: 1.5rem; }
+    .product p { font-size: 1rem; line-height: 1.6; text-align: center; }
 
     /* FOUNDER */
-    .founder {
-      background: #0d2e1f;
-      padding: 40px;
-      border-radius: 20px;
-      text-align: center;
-    }
-    .founder img {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 20px;
-    }
-    .founder h3 {
-      margin: 10px 0 5px 0;
-    }
+    .founder { background: #145c44; border-radius: 16px; padding: 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 30px; }
+    .founder img { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 4px solid #a3f0c3; }
+    .founder div { max-width: 700px; }
+    .founder p { line-height: 1.7; font-size: 1rem; text-align: left; }
 
     /* CONTACT */
-    #contact a {
-      display: block;
-      margin-bottom: 10px;
-    }
+    #contact p { font-size: 1rem; line-height: 1.6; }
 
-    /* UP BUTTON */
-    #upButton {
+    /* BACK TO TOP BUTTON */
+    #topBtn {
       position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: #1ee5b2;
-      color: #0b1c15;
+      bottom: 40px;
+      right: 40px;
+      background: #15b67e;
+      color: #ffffff;
       border: none;
       border-radius: 50%;
       width: 50px;
       height: 50px;
-      font-size: 24px;
       cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      display: flex;
+      font-size: 24px;
+      display: none;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      z-index: 999;
+      transition: background 0.3s;
     }
-    #upButton:hover {
-      background: #38f9c1;
-    }
+    #topBtn:hover { background: #12a36b; }
+
+    /* FOOTER */
+    footer { text-align: center; padding: 40px 20px; background: #0f3d2e; font-size: 0.9rem; color: #b7f2dd; }
 
     /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .products {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
+    @media (min-width: 768px) { .products { grid-template-columns: repeat(2, 1fr); } .founder { flex-wrap: nowrap; } }
+    @media (min-width: 1200px) { .products { grid-template-columns: repeat(3, 1fr); } }
   </style>
 </head>
-
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-left">
+  <div class="brand">
     <img src="curescape-logo.jpg" alt="Curescape Logo">
-    <h1>Curescape</h1>
+    Curescape
   </div>
-  <div class="nav-right">
+  <div class="links">
     <a href="#about">About</a>
     <a href="#products">Prototypes</a>
     <a href="#founder">Founder</a>
     <a href="#contact">Contact</a>
+    <a href="https://www.linkedin.com/in/markrutekamirasserugo" target="_blank">LinkedIn</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <header>
-  <h2>Curescape</h2>
+  <h1>Curescape</h1>
   <p>Developing accessible, evidence-informed health products designed for real-world care in under-resourced settings.</p>
 </header>
 
 <!-- ABOUT -->
-<section id="about">
-  <h2>About</h2>
-  <p>
-    Curescape is a health innovation venture focused on creating affordable, user-friendly therapeutic products that address unmet clinical needs in community and home-based care. Our work prioritizes safety, accessibility, and practical impact — especially in low-resource environments.
-  </p>
+<section id="about" class="about">
+  <h2>About Curescape</h2>
+  <p>Curescape is a health innovation venture focused on creating affordable, user-friendly therapeutic products that address unmet clinical needs in community and home-based care. Our work prioritizes safety, accessibility, and practical impact — especially in low-resource environments.</p>
 </section>
 
 <!-- PRODUCTS -->
 <section id="products">
   <h2>Our Prototypes</h2>
-  <div class="products">
 
+  <div class="products">
     <div class="product">
       <img src="sickle-cell-syrup.jpg" alt="Sickle Cell Relief Syrup">
       <h3>Sickle Cell Relief Syrup</h3>
-      <p>Child-friendly, honey-flavoured supportive care syrup designed to promote overall wellbeing, organ health, and reduce the frequency of pain crises in individuals with sickle cell disease.</p>
+      <p>Child-friendly, honey-flavoured supportive care syrup for pain management, organ health, and overall wellbeing for individuals with sickle cell disease.</p>
     </div>
 
     <div class="product">
@@ -224,7 +148,6 @@
       <h3>Cure Wound Spray</h3>
       <p>Rapid-action wound spray providing antimicrobial protection, pain relief, and support for tissue recovery through a sterile, easy-to-apply format.</p>
     </div>
-
   </div>
 </section>
 
@@ -233,20 +156,41 @@
   <h2>Founder</h2>
   <div class="founder">
     <img src="founder.jpg" alt="Mark Rutekamira Sserugo">
-    <h3>Mark Rutekamira Sserugo</h3>
-    <p>Pharmaceutical sciences student and health innovator focused on developing accessible, evidence-informed solutions for real-world healthcare challenges across Africa.</p>
-    <a href="https://www.linkedin.com/in/markrutekamirasserugo" target="_blank">LinkedIn</a>
+    <div>
+      <p><strong>Mark Rutekamira Sserugo</strong></p>
+      <p>Pharmaceutical sciences student and health innovator focused on developing accessible, evidence-informed solutions for real-world healthcare challenges across Africa.</p>
+    </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
   <h2>Contact</h2>
-  <a href="mailto:inquires.curescape@gmail.com">inquires.curescape@gmail.com</a>
+  <p>
+    📧 <a href="mailto:inquiries.curescape@gmail.com">inquiries.curescape@gmail.com</a><br>
+    🔗 <a href="https://www.linkedin.com/in/markrutekamirasserugo" target="_blank">LinkedIn</a>
+  </p>
 </section>
 
-<!-- UP BUTTON -->
-<button id="upButton" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">&#8679;</button>
+<!-- BACK TO TOP BUTTON -->
+<button id="topBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 Curescape · Built with GitHub Pages
+</footer>
+
+<script>
+  // Show button when scrolling down
+  const topBtn = document.getElementById("topBtn");
+  window.onscroll = function() {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      topBtn.style.display = "flex";
+    } else {
+      topBtn.style.display = "none";
+    }
+  };
+</script>
 
 </body>
 </html>
