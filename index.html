@@ -1,182 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CURE Innovations</title>
+  <meta charset="UTF-8">
+  <title>Curescape</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <style>
+    /* RESET & BASE */
+    * { box-sizing: border-box; scroll-behavior: smooth; }
+    body { margin: 0; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; background: #0d1f1a; color: #a3f0c3; }
+    a { color: #a3f0c3; text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0b2f24;
-  color: white;
-  scroll-behavior: smooth;
-}
+    /* NAVBAR */
+    nav {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px;
+      background: #123028;
+      z-index: 1000;
+    }
+    nav .brand {
+      font-size: 1.6rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    nav .brand img { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; }
+    nav .links a { margin-left: 24px; font-weight: 500; }
 
-section {
-  padding: 80px 20px;
-  text-align: center;
-}
+    /* HERO */
+    header {
+      text-align: center;
+      padding: 100px 20px 60px;
+      background: linear-gradient(135deg, #0f3d2e, #145c44);
+    }
+    header h1 { font-size: 3rem; margin-bottom: 20px; }
+    header p { font-size: 1.2rem; max-width: 700px; margin: auto; opacity: 0.9; }
 
-h2 {
-  font-size: 2.2rem;
-  margin-bottom: 20px;
-  color: #a3f0c3;
-}
+    /* SECTIONS */
+    section { max-width: 1200px; margin: auto; padding: 80px 20px; }
+    section h2 { font-size: 2.2rem; margin-bottom: 30px; color: #a3f0c3; position: relative; }
+    section h2::after { content: ""; position: absolute; left: 0; bottom: -10px; width: 80px; height: 4px; background: #15b67e; border-radius: 2px; }
 
-/* NAV */
-nav {
-  position: sticky;
-  top: 0;
-  background: #0f3d2e;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1000;
-}
+    /* ABOUT */
+    .about p { max-width: 800px; line-height: 1.7; font-size: 1.05rem; }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  margin-left: 20px;
-  font-weight: bold;
-}
+    /* PRODUCTS */
+    .products { display: grid; grid-template-columns: 1fr; gap: 50px; }
+    .product { background: #123028; border-radius: 16px; padding: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.6); display: flex; flex-direction: column; align-items: center; transition: transform 0.3s; }
+    .product:hover { transform: translateY(-8px); }
+    .product img { width: 90%; max-width: 500px; border-radius: 12px; margin-bottom: 20px; }
+    .product h3 { margin: 0 0 12px; color: #a3f0c3; font-size: 1.5rem; }
+    .product p { font-size: 1rem; line-height: 1.6; text-align: center; }
 
-nav a:hover {
-  color: #a3f0c3;
-}
+    /* FOUNDER */
+    .founder { background: #145c44; border-radius: 16px; padding: 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 30px; }
+    .founder img { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 4px solid #a3f0c3; }
+    .founder div { max-width: 700px; }
+    .founder p { line-height: 1.7; font-size: 1rem; text-align: left; }
 
-/* PRODUCTS */
-.products {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
-  margin-top: 30px;
-}
+    /* CONTACT */
+    #contact p { font-size: 1rem; line-height: 1.6; }
 
-.product {
-  background: #0f3d2e;
-  border-radius: 18px;
-  padding: 25px;
-  box-shadow: 0 6px 25px rgba(0,0,0,0.4);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+    /* BACK TO TOP BUTTON */
+    #topBtn {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      background: #15b67e;
+      color: #ffffff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      font-size: 24px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      z-index: 999;
+      transition: background 0.3s;
+    }
+    #topBtn:hover { background: #12a36b; }
 
-.product:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 12px 35px rgba(0,0,0,0.6);
-}
+    /* FOOTER */
+    footer { text-align: center; padding: 40px 20px; background: #0f3d2e; font-size: 0.9rem; color: #b7f2dd; }
 
-.product img {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 16px;
-  margin-bottom: 20px;
-  object-fit: cover;
-}
-
-.product h3 {
-  margin: 0 0 15px;
-  font-size: 1.6rem;
-  color: #a3f0c3;
-}
-
-.product p {
-  font-size: 1rem;
-  line-height: 1.6;
-  text-align: center;
-  padding: 0 10px;
-}
-
-/* FOUNDER SECTION */
-.founder-container {
-  display: flex;
-  justify-content: center;
-  gap: 60px;
-  flex-wrap: wrap;
-  margin-top: 40px;
-}
-
-.founder-card {
-  text-align: center;
-}
-
-.founder-card img {
-  width: 170px;
-  height: 170px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid #1b5e4a;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-  margin-bottom: 15px;
-  transition: transform 0.3s ease;
-}
-
-.founder-card img:hover {
-  transform: scale(1.05);
-}
-
-.founder-card h3 {
-  margin: 10px 0 5px;
-  font-size: 1.2rem;
-  color: #a3f0c3;
-}
-
-.founder-card p {
-  margin: 0;
-  font-size: 0.95rem;
-  opacity: 0.8;
-}
-
-/* RESPONSIVE */
-@media (min-width: 768px) {
-  .products {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1200px) {
-  .products {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* BACK TO TOP */
-#topBtn {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: #1b5e4a;
-  color: white;
-  border: none;
-  padding: 12px 16px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 18px;
-  display: none;
-}
-
-#topBtn:hover {
-  background: #28a87d;
-}
-</style>
+    /* RESPONSIVE */
+    @media (min-width: 768px) { .products { grid-template-columns: repeat(2, 1fr); } .founder { flex-wrap: nowrap; } }
+    @media (min-width: 1200px) { .products { grid-template-columns: repeat(3, 1fr); } }
+  </style>
 </head>
-
 <body>
 
-<!-- NAVIGATION -->
+<!-- NAV -->
 <nav>
-  <div><strong>CURE Innovations</strong></div>
-  <div>
-    <a href="#products">Products</a>
+  <div class="brand">
+    <img src="curescape-logo.jpg" alt="Curescape Logo">
+    Curescape
+  </div>
+  <div class="links">
+    <a href="#about">About</a>
+    <a href="#products">Prototypes</a>
     <a href="#founder">Team</a>
+    <a href="#contact">Contact</a>
+    <a href="https://www.linkedin.com/in/markrutekamirasserugo" target="_blank">LinkedIn</a>
   </div>
 </nav>
+
+<!-- HERO -->
+<header>
+  <h1>Curescape</h1>
+  <p>Developing accessible, evidence-informed health products designed for real-world care in under-resourced settings.</p>
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <h2>About Curescape</h2>
+  <p>Curescape is a health innovation venture focused on creating affordable, user-friendly therapeutic products that address unmet clinical needs in community and home-based care. Our work prioritizes safety, accessibility, and practical impact — especially in low-resource environments.</p>
+</section>
 
 <!-- PRODUCTS -->
 <section id="products">
@@ -203,42 +151,50 @@ nav a:hover {
   </div>
 </section>
 
-<!-- FOUNDER -->
+<!-- FOUNDER & CO-FOUNDER -->
 <section id="founder">
   <h2>Founder & Co-Founder</h2>
-
-  <div class="founder-container">
-    <div class="founder-card">
-      <img src="founder.jpg" alt="Mark Rutekamira Sserugo">
-      <h3>Mark Rutekamira Sserugo</h3>
-      <p>Founder</p>
+  <div class="founder">
+    <img src="founder.jpg" alt="Mark Rutekamira Sserugo">
+    <div>
+      <p><strong>Mark Rutekamira Sserugo</strong></p>
+      <p>Pharmaceutical sciences student and health innovator focused on developing accessible, evidence-informed solutions for real-world healthcare challenges across Africa.</p>
     </div>
 
-    <div class="founder-card">
-      <img src="mulayi-patience.jpg" alt="Mulayi Patience Wabwire">
-      <h3>Mulayi Patience Wabwire</h3>
-      <p>Co-Founder</p>
+    <img src="mulayi-patience.jpg" alt="Mulayi Patience Wabwire">
+    <div>
+      <p><strong>Mulayi Patience Wabwire</strong></p>
+      <p>Co-Founder at Curescape, committed to advancing accessible health innovation and supporting the development of impactful therapeutic solutions for underserved communities.</p>
     </div>
   </div>
 </section>
 
-<button onclick="topFunction()" id="topBtn">↑</button>
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact</h2>
+  <p>
+    📧 <a href="mailto:inquiries.curescape@gmail.com">inquiries.curescape@gmail.com</a><br>
+    🔗 <a href="https://www.linkedin.com/in/markrutekamirasserugo" target="_blank">LinkedIn</a>
+  </p>
+</section>
+
+<!-- BACK TO TOP BUTTON -->
+<button id="topBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 Curescape · Built with GitHub Pages
+</footer>
 
 <script>
-let topBtn = document.getElementById("topBtn");
-
-window.onscroll = function() {
-  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    topBtn.style.display = "block";
-  } else {
-    topBtn.style.display = "none";
-  }
-};
-
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
+  const topBtn = document.getElementById("topBtn");
+  window.onscroll = function() {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      topBtn.style.display = "flex";
+    } else {
+      topBtn.style.display = "none";
+    }
+  };
 </script>
 
 </body>
